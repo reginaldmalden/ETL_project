@@ -1,0 +1,40 @@
+#import SQL Alchemy and Pandas
+from sqlalchemy import create_engine
+import pandas as pd
+
+database_path="C:/Users/regin/Documents/Project 2/13_7651_compressed_database.sqlite/database.sqlite"
+
+#create the SQL engine
+engine=create_engine(f"sqlite:///{database_path}")
+con=engine.connect()
+#data=engine.execute("Select * from NationalNames where year >2013")
+data=pd.read_sql("Select * from NationalNames where year >2013", con)
+data
+
+#Select useful columns
+data[["Year","Name","Gender"]].head()
+
+data=data.rename(columns={"Year":"Birth_Year","Name":"First_Name","Count":"Total_Named"})
+data
+
+#Create csv of pandas DataFrame
+data[["First_Name","Birth_Year","Gender","Total_Named"]].to_csv("2014_baby_names.csv")
+
+#Create the csv path for Mortality Data
+csv_path="C:/Users/regin/Documents/Project 2/28_3144_compressed_2014_data.csv/2014_data.csv"
+
+#Create Mortality DF
+mortality_df=pd.read_csv(csv_path,low_memory=False, encoding="utf-8")
+
+mortality_df.head(20)
+
+#Select columns to use
+mortality_df[["sex","detail_age",]]
+
+#Renaming of Columns
+mortality_df=mortality_df.rename(columns={"sex":"Gender","detail_age":"Age"})
+
+mortality_df[["Gender","Age"]]
+
+#Send pandas table to CSV
+mortality_df[["Gender","Age"]].to_csv("output_mortality.csv")
