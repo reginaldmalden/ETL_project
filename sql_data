@@ -1,0 +1,43 @@
+Drop TABLE Baby_Names
+Drop TABLE output_mortality
+CREATE TABLE baby_Names (
+Id int ,
+first_Name Varchar (30) not null , 
+    
+    Birth_Year INT , 
+    
+Gender Varchar (10) not null,
+Total_Named INT);
+SELECT * FROM baby_Names ;
+SELECT  Id , first_name
+From  baby_names 
+WHERE first_name = 'Mary';
+DELETE FROM baby_names
+WHERE id = 3;
+SELECT * FROM baby_Names 
+WHERE first_name = 'Emily'
+    or Id = '25';
+-----
+---number of rows--33043
+SELECT COUNT (total_named) from baby_names
+    
+SELECT COUNT(first_name) FROM baby_names;
+----
+SELECT MIN (total_named) FROM baby_names;
+--5
+SELECT MAX (total_named) FROM baby_names;
+--20799
+-----------------------------------------
+CREATE TABLE output_mortality (
+Id INT ,
+gender Varchar (10) NOT NUll  ,
+age INT );
+SELECT * FROM output_mortality
+SELECT AVG(age)
+FROM output_mortality;
+-----------------------------
+SELECT COUNT(gender) FROM output_mortality
+select * from output_mortality
+SELECT  Id , gender
+From   output_mortality
+WHERE gender = 'F';
